@@ -49,7 +49,7 @@ class Die {
         if (! this.frozen) 
             this.value = floor(random(this.sides)+1);
     }
-
+    
     freeze() {
         this.frozen = true;
     }
@@ -74,3 +74,15 @@ class Die {
         return false;
     }
 }
+
+function rollDice() {
+    var total = 0;
+    const dice = [...document.querySelectorAll(".die-list")];
+    dice.forEach(die => {
+      toggleClasses(die);
+      var dieValue = getRandomNumber(1, 6);
+      die.dataset.roll = dieValue;
+      total+= dieValue;
+    });
+    console.log(total);
+  }
