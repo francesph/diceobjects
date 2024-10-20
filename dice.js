@@ -42,7 +42,7 @@ class Die {
             fill("black");
         }
         textSize(30);
-        text(this.value, this.x, this.y, this.size, this.size);
+        text(this.value, this.x, this.y-9, this.size, this.size);
     }
 
     roll() {

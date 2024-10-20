@@ -3,21 +3,29 @@ let dicePlayer2 = [];
 let numberOfDice = 2;
 let totalScorePlayer1 = 0;
 let totalScorePlayer2 = 0;
+let theFont;
 
-
+function preload() {
+    theFont = loadFont("assets/PlayfairDisplaySC-Regular.ttf");
+}
 function setup() {
   createCanvas(700, 800);
+
   for (let i = 0; i < numberOfDice; i++) {
     dicePlayer1[i] = new Die(50); // argument is the size of the die
     dicePlayer2[i] = new Die(50);
   }
-  rollDice();
+  textFont(theFont);
   rectMode(CENTER);
+//adds that reset button in bottom left corner
+  button = createButton("Reset");
+  button.mouseClicked(resetGame);
 }
-//   var button = createButton("Reset");
-//   button.mousePressed(resetSketch);
-// }
 
+function resetGame() {
+  totalScorePlayer1 = 0;
+  totalScorePlayer2 = 0;
+}
 
 function draw() {
   background("#eddcfe");
@@ -60,8 +68,8 @@ function draw() {
   fill("black");
   textSize(32);
   textAlign(CENTER);
-  text(`Player 1 Score: ${totalScorePlayer1}`, 350, 300);
-  text(`Player 2 Score: ${totalScorePlayer2}`, 350, 700);
+  text(`Score: ${totalScorePlayer1}`, 350, 300);
+  text(`Score: ${totalScorePlayer2}`, 350, 700);
 
   //WIN/LOSE MESSAGE--------------------------------------------------------------------------
  
@@ -134,11 +142,20 @@ function draw() {
 function rollDice() {
   for (let i = 0; i < dicePlayer1.length; i++) {
     dicePlayer1[i].roll();
+    if (dicePlayer1[i].value === 1) {
+      totalScorePlayer1 = totalScorePlayer1-5; // Reset Player 1's score if they roll a 1
+      break;
+    }
     totalScorePlayer1 += dicePlayer1[i].value;
+    
   }
   
   for (let i = 0; i < dicePlayer2.length; i++) {
     dicePlayer2[i].roll();
+    if (dicePlayer2[i].value === 1) {
+      totalScorePlayer2 = totalScorePlayer2-5; // Reset Player 1's score if they roll a 1
+      break;
+    }
     totalScorePlayer2 += dicePlayer2[i].value;
   }
 }
