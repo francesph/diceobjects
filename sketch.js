@@ -14,15 +14,18 @@ function setup() {
   rollDice();
   rectMode(CENTER);
 }
+//   var button = createButton("Reset");
+//   button.mousePressed(resetSketch);
+// }
+
 
 function draw() {
-  background("#f7eea4");
+  background("#eddcfe");
   
   let horizontalOffset = 265
   let player2Offset = 265;
-
-  strokeWeight(4);
-  fill("black");
+  
+  strokeWeight(8);
   line(0, 400, 700, 400)
 
   // loop over the array and place+display each die
@@ -44,7 +47,7 @@ function draw() {
   // textAlign(LEFT);
   // text(`Sum: ${totalSum}`, 200, 100); 
 
-  fill("green");
+  fill("#7294b3");
   textStyle(NORMAL);
   textSize(46);
   text('Player 1', 360, 100);
@@ -62,32 +65,68 @@ function draw() {
 
   //WIN/LOSE MESSAGE--------------------------------------------------------------------------
  
-  fill("purple");
+  //PLAYER 1 (350, 200)
+  fill("green");
   textSize(60);
-  strokeWeight(3);
+  textStyle(BOLD);
   if (totalScorePlayer1 === 100){
     text('You Win!', 350, 200);
+    // text("You Lose", 350, 600)
   }
-  
+  fill("red");
+  textSize(60);
+  textStyle(BOLD);
+  if (totalScorePlayer1 === 100){
+    // text('You Win!', 350, 200);
+    text("You Lose", 350, 600)
+  }
+
   fill("red");
   textStyle(BOLD);
   textSize(60);
   if (totalScorePlayer1 > 100) {
+    // text('You Win!', 350, 600);
     text('You Lose', 350, 200);
   }
 
-  fill("purple");
+  fill("green");
+  textStyle(BOLD);
   textSize(60);
-  strokeWeight(3);
+  if (totalScorePlayer1 > 100) {
+    text('You Win!', 350, 600);
+    // text('You Lose', 350, 200);
+  }
+//PLAYER 2 (350, 600) -----------------------------------
+  fill("green");
+  textSize(60);
+  textStyle(BOLD);
   if (totalScorePlayer2 === 100){
     text('You Win!', 350, 600);
+    // text("You Lose", 350, 200);
   }
-  
+
+  fill("red");
+  textSize(60);
+  textStyle(BOLD);
+  if (totalScorePlayer2 === 100){
+    // text('You Win!', 350, 600); player 2 wins
+    text("You Lose", 350, 200); //player 1 loses
+  }
+
   fill("red");
   textStyle(BOLD);
   textSize(60);
   if (totalScorePlayer2 > 100) {
+    // text('You Win!', 350, 200);
     text('You Lose', 350, 600);
+  }
+
+  fill("green");
+  textStyle(BOLD);
+  textSize(60);
+  if (totalScorePlayer2 > 100) {
+    text('You Win!', 350, 200);
+    // text('You Lose', 350, 600);
   }
 }
 
